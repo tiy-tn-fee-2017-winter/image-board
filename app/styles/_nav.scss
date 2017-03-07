@@ -1,0 +1,22 @@
+.top-nav {
+  position: relative;
+  padding: ($m-gutter / 2) $m-gutter;
+  background: $c-primary;
+  color: $c-primary-dark;
+
+  box-shadow: $shadow-1;
+}
+
+.form-toggle {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+
+  &__icon {
+    @extend .fa;
+    @extend .fa-bars;
+  }
+}

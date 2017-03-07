@@ -1,0 +1,29 @@
+.top-form {
+  padding: ($m-gutter * 2) $m-gutter;
+  background: $c-white;
+}
+
+.form-control {
+  & + & {
+    margin-top: $m-gutter;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.4rem;
+    font: inherit;
+  }
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+
+  * + & {
+    margin-top: $m-gutter;
+  }
+
+  > * + * {
+    margin-left: $m-gutter / 2;
+  }
+}
