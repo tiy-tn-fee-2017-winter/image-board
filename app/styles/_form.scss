@@ -1,6 +1,13 @@
 .top-form {
+  display: none;
+  position: relative;
   padding: ($m-gutter * 2) $m-gutter;
   background: $c-white;
+  box-shadow: $shadow-1;
+
+  &--active {
+    display: block;
+  }
 }
 
 .form-control {
