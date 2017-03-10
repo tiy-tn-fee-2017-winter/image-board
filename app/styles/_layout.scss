@@ -1,4 +1,25 @@
+.section {
+  padding: 0 $m-gutter;
+}
+
 .container {
   max-width: $m-max-width;
   margin: auto;
+
+  &--bg {
+    background: $c-dark-grey;
+  }
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  // flex-wrap: wrap;
+  margin: 0 (-$m-gutter);
+
+  &__item {
+    flex-basis: calc(100% / 2 - #{$m-gutter} - #{$m-gutter});
+    flex-grow: 1;
+    margin: $m-gutter;
+  }
 }

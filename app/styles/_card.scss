@@ -1,0 +1,14 @@
+.card {
+  margin: 0 ($m-gutter * 2);
+  padding: $m-gutter;
+  background: $c-white;
+  box-shadow: $shadow-1;
+
+  &__pic {
+    width: calc(100% + #{$m-gutter} + #{$m-gutter});
+    max-width: none;
+    margin: -$m-gutter;
+
+    margin-bottom: 0;
+  }
+}

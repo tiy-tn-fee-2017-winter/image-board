@@ -4,14 +4,14 @@
 // Colors
 $c-white: #fff;
 $c-light-grey: #ddd;
-$c-dark-grey: #777;
+$c-dark-grey: #ccc;
 $c-text: #444;
 $c-primary: #47518f;
 $c-primary-dark: darken($c-primary, 30%);
 $c-success: #0a8237;
 
 // Measurements
-$m-max-width: 60rem;
+$m-max-width: 35rem;
 $m-gutter: 1rem;
 
 // Shadows
@@ -25,3 +25,4 @@ $fa-font-path: '//netdna.bootstrapcdn.com/font-awesome/4.3.0/fonts';
 @import 'button';
 @import 'nav';
 @import 'form';
+@import 'card';
