@@ -2,18 +2,29 @@ import 'whatwg-fetch';
 
 const form = document.querySelector('.top-form');
 const navButton = document.querySelector('.form-toggle');
+const cancelButton = document.querySelector('.button--cancel');
+const urlInput = document.querySelector('[name=url]');
+const captionInput = document.querySelector('[name=caption]');
 
-navButton.addEventListener('click', () => {
+function clearForm() {
+  urlInput.value = '';
+  captionInput.value = '';
+}
+
+function toggleForm() {
   navButton.querySelector('.form-toggle__icon')
     .classList.toggle('active');
   form.classList.toggle('top-form--active');
+}
+
+navButton.addEventListener('click', toggleForm);
+cancelButton.addEventListener('click', () => {
+  toggleForm();
+  clearForm();
 });
 
 form.addEventListener('submit', (ev) => {
   ev.preventDefault();
-
-  const urlInput = document.querySelector('[name=url]');
-  const captionInput = document.querySelector('[name=caption]');
 
   const data = {
     url: urlInput.value,
@@ -26,12 +37,8 @@ form.addEventListener('submit', (ev) => {
     body: JSON.stringify(data),
   });
 
-  navButton.querySelector('.form-toggle__icon')
-    .classList.toggle('active');
-  form.classList.toggle('top-form--active');
-
-  urlInput.value = '';
-  captionInput.value = '';
+  toggleForm();
+  clearForm();
 });
 
 const gridEl = document.querySelector('.grid');
