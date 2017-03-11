@@ -34,38 +34,29 @@ form.addEventListener('submit', (ev) => {
   captionInput.value = '';
 });
 
-const data = [
-  {
-    _id: '58c441d9b1248c000420e486',
-    url: 'http://placecage.com/200/200',
-    caption: 'Cage'
-  },
-  {
-    _id: '58c44220b1248c000420e487',
-    url: 'http://placecera.com/200/200',
-    caption: 'Cera'
-  }
-];
-
 const gridEl = document.querySelector('.grid');
 
-for (let i = 0; i < data.length; i++) {
-  const item = data[i];
+fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
+  .then(res => res.json())
+  .then((data) => {
+    for (let i = 0; i < data.length; i++) {
+      const item = data[i];
 
-  const itemEl = document.createElement('div');
-  itemEl.classList.add('grid__item');
-  itemEl.innerHTML = `
-    <div class="card">
-      <img src="" alt="" class="card__pic">
-      <h2 class="card__caption"></h2>
-    </div>`;
+      const itemEl = document.createElement('div');
+      itemEl.classList.add('grid__item');
+      itemEl.innerHTML = `
+        <div class="card">
+          <img src="" alt="" class="card__pic">
+          <h2 class="card__caption"></h2>
+        </div>`;
 
-  const imgEl = itemEl.querySelector('.card__pic');
-  const captionEl = itemEl.querySelector('.card__caption');
+      const imgEl = itemEl.querySelector('.card__pic');
+      const captionEl = itemEl.querySelector('.card__caption');
 
-  imgEl.src = item.url;
-  imgEl.alt = item.caption;
-  captionEl.innerText = item.caption;
+      imgEl.src = item.url;
+      imgEl.alt = item.caption;
+      captionEl.innerText = item.caption;
 
-  gridEl.appendChild(itemEl);
-}
+      gridEl.appendChild(itemEl);
+    }
+  });
