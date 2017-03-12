@@ -1,6 +1,6 @@
 import 'whatwg-fetch';
 
-import renderPostList from './render-post-list';
+import PostList from './views/list';
 import store from './store';
 import { create, findAll } from './actions/post';
 
@@ -11,9 +11,8 @@ const urlInput = document.querySelector('[name=url]');
 const captionInput = document.querySelector('[name=caption]');
 const gridEl = document.querySelector('.grid');
 
-store.subscribe(() => {
-  renderPostList(gridEl, store.getState().posts);
-});
+const listView = new PostList(gridEl, store);
+listView.mounted();
 
 function clearForm() {
   urlInput.value = '';
