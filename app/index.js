@@ -7,6 +7,8 @@ const urlInput = document.querySelector('[name=url]');
 const captionInput = document.querySelector('[name=caption]');
 const gridEl = document.querySelector('.grid');
 
+let postList = [];
+
 function clearForm() {
   urlInput.value = '';
   captionInput.value = '';
@@ -55,9 +57,14 @@ form.addEventListener('submit', (ev) => {
     body: JSON.stringify(data),
   }).then(res => res.json())
     .then((post) => {
-      const postEl = createPostElement(post);
+      postList = [post, ...postList];
 
-      gridEl.insertBefore(postEl, gridEl.querySelector('.grid__item'));
+      gridEl.innerHTML = '';
+
+      postList.map(createPostElement)
+        .forEach((postEl) => {
+          gridEl.appendChild(postEl);
+        });
     });
 
   toggleForm();
@@ -67,7 +74,9 @@ form.addEventListener('submit', (ev) => {
 fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
   .then(res => res.json())
   .then((data) => {
-    data.map(createPostElement)
+    postList = data;
+
+    postList.map(createPostElement)
       .forEach((postEl) => {
         gridEl.appendChild(postEl);
       });
