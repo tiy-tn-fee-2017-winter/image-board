@@ -1,5 +1,7 @@
 import 'whatwg-fetch';
 
+import renderPostList from './render-post-list';
+
 const form = document.querySelector('.top-form');
 const navButton = document.querySelector('.form-toggle');
 const cancelButton = document.querySelector('.button--cancel');
@@ -18,23 +20,6 @@ function toggleForm() {
   navButton.querySelector('.form-toggle__icon')
     .classList.toggle('active');
   form.classList.toggle('top-form--active');
-}
-
-function createPostElement(post) {
-  const postEl = document.createElement('div');
-  postEl.classList.add('grid__item');
-
-  postEl.innerHTML = `
-    <div class="card">
-      <img src="" alt="" class="card__pic" />
-      <h2 class="card__caption"></h2>
-    </div>`;
-
-  postEl.querySelector('.card__pic').src = post.url;
-  postEl.querySelector('.card__pic').alt = post.caption;
-  postEl.querySelector('.card__caption').innerText = post.caption;
-
-  return postEl;
 }
 
 navButton.addEventListener('click', toggleForm);
@@ -59,12 +44,7 @@ form.addEventListener('submit', (ev) => {
     .then((post) => {
       postList = [post, ...postList];
 
-      gridEl.innerHTML = '';
-
-      postList.map(createPostElement)
-        .forEach((postEl) => {
-          gridEl.appendChild(postEl);
-        });
+      renderPostList(gridEl, postList);
     });
 
   toggleForm();
@@ -76,8 +56,5 @@ fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
   .then((data) => {
     postList = data;
 
-    postList.map(createPostElement)
-      .forEach((postEl) => {
-        gridEl.appendChild(postEl);
-      });
+    renderPostList(gridEl, postList);
   });
