@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 
 import renderPostList from './render-post-list';
 import store from './store';
-import { createComplete, findAllComplete } from './actions/post';
+import { create, findAll } from './actions/post';
 
 const form = document.querySelector('.top-form');
 const navButton = document.querySelector('.form-toggle');
@@ -40,21 +40,10 @@ form.addEventListener('submit', (ev) => {
     caption: captionInput.value,
   };
 
-  fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt', {
-    method: 'POST',
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
-    body: JSON.stringify(data),
-  }).then(res => res.json())
-    .then((post) => {
-      store.dispatch(createComplete(post));
-    });
+  store.dispatch(create(data));
 
   toggleForm();
   clearForm();
 });
 
-fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
-  .then(res => res.json())
-  .then((posts) => {
-    store.dispatch(findAllComplete(posts));
-  });
+store.dispatch(findAll());
