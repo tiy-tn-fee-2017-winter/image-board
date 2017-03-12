@@ -1,6 +1,7 @@
 import { findAll } from '../actions/post';
 import FormView from '../views/form';
 import PostList from '../views/list';
+import CardList from '../components/card-list.vue';
 
 export default class ApplicationController {
   constructor(el, store) {
