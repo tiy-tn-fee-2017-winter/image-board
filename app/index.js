@@ -2,6 +2,7 @@ import 'whatwg-fetch';
 
 import renderPostList from './render-post-list';
 import store from './store';
+import { createComplete, findAllComplete } from './actions/post';
 
 const form = document.querySelector('.top-form');
 const navButton = document.querySelector('.form-toggle');
@@ -45,10 +46,7 @@ form.addEventListener('submit', (ev) => {
     body: JSON.stringify(data),
   }).then(res => res.json())
     .then((post) => {
-      store.dispatch({
-        type: 'POST@CREATE_COMPLETE',
-        data: post
-      });
+      store.dispatch(createComplete(post));
     });
 
   toggleForm();
@@ -57,9 +55,6 @@ form.addEventListener('submit', (ev) => {
 
 fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
   .then(res => res.json())
-  .then((data) => {
-    store.dispatch({
-      type: 'POST@FINDALL_COMPLETE',
-      data
-    });
+  .then((posts) => {
+    store.dispatch(findAllComplete(posts));
   });
