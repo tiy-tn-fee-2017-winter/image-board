@@ -25,4 +25,12 @@
       background: lighten($c-success, 8%);
     }
   }
+
+  &--danger {
+    background: $c-danger;
+
+    &:hover {
+      background: darken($c-danger, 8%);
+    }
+  }
 }

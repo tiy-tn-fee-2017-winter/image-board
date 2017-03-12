@@ -3,6 +3,11 @@ const createComplete = post => ({
   data: post
 });
 
+const destroyComplete = post => ({
+  type: 'POST@DESTROY_COMPLETE',
+  data: post
+});
+
 const findAllComplete = data => ({
   type: 'POST@FINDALL_COMPLETE',
   data
@@ -25,4 +30,12 @@ export function findAll() {
     .then((posts) => {
       dispatch(findAllComplete(posts));
     });
+}
+
+export function destroy(post) {
+  return dispatch => fetch(`https://tiny-tn.herokuapp.com/collections/image-board-rt/${post._id}`, {
+    method: 'DELETE'
+  }).then(() => {
+    dispatch(destroyComplete(post));
+  });
 }

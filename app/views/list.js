@@ -1,14 +1,32 @@
+import { destroy } from '../actions/post';
+
 class PostItem {
-  constructor(post) {
+  constructor(post, store) {
     this.post = post;
+    this.store = store;
     this.el = document.createElement('div');
     this.el.classList.add('grid__item');
 
     this.el.innerHTML = `
       <div class="card">
         <img src="" alt="" class="card__pic" />
-        <h2 class="card__caption"></h2>
+        <h2 class="level">
+          <div class="level__left">
+            <span class="card__caption"></span>
+          </div>
+          <div class="level__right">
+            <button class="card__delete button button--danger">
+              <div class="fa fa-remove"></div>
+            </button>
+          </div>
+        </h2>
       </div>`;
+  }
+
+  mounted() {
+    this.el.querySelector('.card__delete').addEventListener('click', () => {
+      this.store.dispatch(destroy(this.post));
+    });
   }
 
   render() {
@@ -33,9 +51,10 @@ export default class PostList {
   render() {
     this.el.innerHTML = '';
 
-    this.store.getState().posts.map(p => new PostItem(p))
+    this.store.getState().posts.map(p => new PostItem(p, this.store))
       .forEach((postView) => {
         postView.render();
+        postView.mounted();
         this.el.appendChild(postView.el);
       });
   }
