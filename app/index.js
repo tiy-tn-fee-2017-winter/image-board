@@ -1,6 +1,7 @@
 import 'whatwg-fetch';
 
 import renderPostList from './render-post-list';
+import store from './store';
 
 const form = document.querySelector('.top-form');
 const navButton = document.querySelector('.form-toggle');
@@ -9,7 +10,9 @@ const urlInput = document.querySelector('[name=url]');
 const captionInput = document.querySelector('[name=caption]');
 const gridEl = document.querySelector('.grid');
 
-let postList = [];
+store.subscribe(() => {
+  renderPostList(gridEl, store.getState().posts);
+});
 
 function clearForm() {
   urlInput.value = '';
@@ -42,9 +45,10 @@ form.addEventListener('submit', (ev) => {
     body: JSON.stringify(data),
   }).then(res => res.json())
     .then((post) => {
-      postList = [post, ...postList];
-
-      renderPostList(gridEl, postList);
+      store.dispatch({
+        type: 'POST@CREATE_COMPLETE',
+        data: post
+      });
     });
 
   toggleForm();
@@ -54,7 +58,8 @@ form.addEventListener('submit', (ev) => {
 fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt')
   .then(res => res.json())
   .then((data) => {
-    postList = data;
-
-    renderPostList(gridEl, postList);
+    store.dispatch({
+      type: 'POST@FINDALL_COMPLETE',
+      data
+    });
   });
