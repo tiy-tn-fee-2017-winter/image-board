@@ -12,6 +12,7 @@ import CardItem from './card-item.vue';
 import { destroy } from '../actions/post';
 
 export default {
+  name: 'CardList',
   components: {
     CardItem
   },
