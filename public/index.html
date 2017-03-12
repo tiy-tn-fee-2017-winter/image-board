@@ -9,35 +9,37 @@
 </head>
 
 <body>
-  <div class="page-top">
-    <header class="top-nav">
-      <div class="container">
-        <button class="form-toggle">
-          <span class="form-toggle__icon"></span>
-        </button>
+  <div class="app">
+    <div class="page-top">
+      <header class="top-nav">
+        <div class="container">
+          <button class="form-toggle">
+            <span class="form-toggle__icon"></span>
+          </button>
+        </div>
+      </header>
+      <form class="top-form">
+        <div class="container">
+          <div class="form-control">
+            <input type="text" class="form-control__input" name="url" placeholder="Image URL">
+          </div>
+
+          <div class="form-control">
+            <input type="text" class="form-control__input" name="caption" placeholder="Image Caption">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="button button--cancel">Cancel</button>
+            <button class="button button--success">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <div class="section">
+      <div class="container container--bg">
+        <div class="grid"></div>
       </div>
-    </header>
-    <form class="top-form">
-      <div class="container">
-        <div class="form-control">
-          <input type="text" class="form-control__input" name="url" placeholder="Image URL">
-        </div>
-
-        <div class="form-control">
-          <input type="text" class="form-control__input" name="caption" placeholder="Image Caption">
-        </div>
-
-        <div class="form-actions">
-          <button type="button" class="button button--cancel">Cancel</button>
-          <button class="button button--success">Submit</button>
-        </div>
-      </div>
-    </form>
-  </div>
-
-  <div class="section">
-    <div class="container container--bg">
-      <div class="grid"></div>
     </div>
   </div>
 

@@ -1,17 +1,9 @@
 import 'whatwg-fetch';
 
-import PostList from './views/list';
-import FormView from './views/form';
 import store from './store';
-import { findAll } from './actions/post';
+import ApplicationController from './controllers/application';
 
-const gridEl = document.querySelector('.grid');
-const pageTopEl = document.querySelector('.page-top');
+const appEl = document.querySelector('.app');
 
-const formView = new FormView(pageTopEl, store);
-formView.mounted();
-
-const listView = new PostList(gridEl, store);
-listView.mounted();
-
-store.dispatch(findAll());
+const app = new ApplicationController(appEl, store);
+app.created();
