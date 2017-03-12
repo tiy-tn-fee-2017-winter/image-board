@@ -6,7 +6,7 @@
         <span class="card__caption">{{ post.caption }}</span>
       </div>
       <div class="level__right">
-        <button class="card__delete button button--danger">
+        <button @click="$emit('destroy', post)" class="card__delete button button--danger">
           <div class="fa fa-remove"></div>
         </button>
       </div>
