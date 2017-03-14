@@ -13,6 +13,11 @@ const findAllComplete = data => ({
   data
 });
 
+const findOneComplete = data => ({
+  type: 'POST@FINDONE_COMPLETE',
+  data
+});
+
 export function create(formData) {
   return dispatch => fetch('https://tiny-tn.herokuapp.com/collections/image-board-rt', {
     method: 'POST',
@@ -29,6 +34,14 @@ export function findAll() {
     .then(res => res.json())
     .then((posts) => {
       dispatch(findAllComplete(posts));
+    });
+}
+
+export function findOne(id) {
+  return dispatch => fetch(`https://tiny-tn.herokuapp.com/collections/image-board-rt/${id}`)
+    .then(res => res.json())
+    .then((post) => {
+      dispatch(findOneComplete(post));
     });
 }
 

@@ -21,14 +21,30 @@
 </template>
 
 <script>
+import store from '../store';
+import { findOne } from '../actions/post';
+
 export default {
+  name: 'CardDetail',
   data() {
     return {
+      posts: this.$select('posts'),
+      currentPost: null,
     };
   },
 
-  methods: {
+  mounted() {
+    store.dispatch(findOne(this.$route.params.id));
+  },
 
+  watch: {
+    posts: 'findPost'
+  },
+
+  methods: {
+    findPost() {
+      this.currentPost = this.posts.find(p => p._id == this.$route.params.id);
+    }
   },
 };
 </script>
