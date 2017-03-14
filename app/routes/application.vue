@@ -4,7 +4,7 @@
 
     <div class="section">
       <div class="container container--bg">
-        <card-list class="grid"></card-list>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -14,15 +14,13 @@
 import store from '../store';
 import { findAll } from '../actions/post';
 
-import CardForm from './card-form.vue';
-import CardList from './card-list.vue';
+import CardForm from '../components/card-form.vue';
 
 export default {
   name: 'Application',
 
   components: {
     CardForm,
-    CardList,
   },
 
   mounted() {

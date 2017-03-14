@@ -8,7 +8,7 @@
 
 <script>
 import store from '../store';
-import CardItem from './card-item.vue';
+import CardItem from '../components/card-item.vue';
 import { destroy } from '../actions/post';
 
 export default {
