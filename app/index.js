@@ -1,9 +1,8 @@
 import 'whatwg-fetch';
 
-import store from './store';
-import ApplicationController from './controllers/application';
-
+import Vue from 'vue';
+import Application from './components/application.vue';
 const appEl = document.querySelector('.app');
 
-const app = new ApplicationController(appEl, store);
-app.created();
+const app = new Vue(Application);
+app.$mount(appEl);
