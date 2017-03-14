@@ -1,5 +1,7 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
+import Vue from 'vue';
+import Revue from 'revue';
 
 import reducer from './reducer';
 
@@ -14,4 +16,4 @@ const store = createStore(
   )
 );
 
-export default store;
+export default new Revue(Vue, store);

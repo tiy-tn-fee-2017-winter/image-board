@@ -17,12 +17,8 @@ export default {
     CardItem
   },
   data() {
-    store.subscribe(() => {
-      this.posts = store.getState().posts;
-    });
-
     return {
-      posts: [],
+      posts: this.$select('posts'),
     };
   },
 
