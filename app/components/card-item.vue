@@ -6,9 +6,9 @@
         <span class="card__caption">{{ post.caption }}</span>
       </div>
       <div class="level__right">
-        <button @click="$emit('destroy', post)" class="card__delete button button--danger">
-          <div class="fa fa-remove"></div>
-        </button>
+        <router-link v-bind:to="{ name: 'detail', params: { id: post._id } }" class="button">
+          <div class="fa fa-pencil"></div>
+        </router-link>
       </div>
     </h2>
   </div>
