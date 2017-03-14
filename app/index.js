@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 
 import Application from './routes/application.vue';
 import CardList from './routes/card-list.vue';
+import CardDetail from './routes/card-detail.vue';
 
 Vue.use(VueRouter);
 
@@ -13,6 +14,11 @@ const routes = [
     path: '/',
     name: 'index',
     component: CardList
+  },
+  {
+    path: '/posts/:id',
+    name: 'detail',
+    component: CardDetail
   }
 ];
 
